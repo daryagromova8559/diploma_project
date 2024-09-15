@@ -1,0 +1,51 @@
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+
+    <h5 class="my-0 mr-md-auto font-weight-normal">МедЭксперт</h5>
+
+    <ul class="nav nav-tabs">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+               aria-expanded="false">Навигация</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'home_page' %}">Главная</a></li>
+                <li><a class="dropdown-item" href="{% url 'medical:home' %}">Услуги</a></li>
+                <li><a class="dropdown-item" href="{% url 'medical:doctors_list' %}">Врачи</a></li>
+                <li><a class="dropdown-item" href="{% url 'medical:contact' %}">Контакты</a></li>
+
+            </ul>
+        </li>
+        {% if user.is_superuser %}
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+               aria-expanded="false">Админ</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'medical:create' %}">Создать Услугу</a></li>
+                <li><a class="dropdown-item" href="{% url 'medical:doctors_create' %}">Добавить доктора</a></li>
+                <li><a class="dropdown-item" href="{% url 'users:record_list' %}">Просмотр записей</a></li>
+            </ul>
+        </li>
+        {% endif %}
+        {% if user.is_authenticated %}
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+               aria-expanded="false">Пользователь</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'users:record' %}">Записаться на прием</a></li>
+                <li><a class="dropdown-item" href="{% url 'users:record_list' %}">Мои записи</a></li>
+                <li><a class="dropdown-item" href="{% url 'users:logout' %}">Выйти</a></li>
+            </ul>
+        </li>
+
+        {% else %}
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+               aria-expanded="false">Пользователь</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'users:login' %}">Вход</a></li>
+                <li><a class="dropdown-item" href="{% url 'users:register' %}">Зарегестрироваться</a></li>
+            </ul>
+        </li>
+        {% endif %}
+
+    </ul>
+</div>

@@ -1,0 +1,26 @@
+{% extends 'medical/base.html' %}
+{% load my_tags %}
+{% block content %}
+
+    <div class="album py-5 bg-body-tertiary">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-2">
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <div style="text-align: center;"><img src="{{ object.photo | media_filter }}"
+                                                              style="width:200px;"></div>
+                            <h2 class="card-text">{{ object }}</h2>
+                            <p class="card-text">Должность : {{ object.job_title }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a class="btn btn-outline-info" href="{% url 'medical:doctors_list' %}">Назад</a></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'medical/base.html' %}
+
+{% block content %}
+    <div class="col-12">
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <p>Хотите отменить "{{ object.service }}"?</p>
+                            <button type="submit" class="btn btn-outline-secondary">Подтвердить</button>
+                            <a href="{% url 'users:record_list'%}" type="submit" class="btn btn-outline-primary">Отменить</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
