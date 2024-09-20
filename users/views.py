@@ -6,7 +6,7 @@ from django.contrib.auth.views import PasswordResetView
 from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
-from django.views.generic import CreateView, DetailView, ListView, UpdateView, DeleteView
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 
 from config.settings import EMAIL_HOST_USER
 from users.forms import UserRegisterForm, RecordForm, RecordManageForm
@@ -63,17 +63,11 @@ class GeneratePasswordView(PasswordResetView):
             return redirect(reverse("users:login"))
 
 
-class UsersDetail(DetailView):
-    model = User
-    template_name = 'users/user_detail.html'
-    context_object_name = 'objects_list'
-
-
 class RecordCreateView(LoginRequiredMixin, CreateView):
     """Record create """
     model = Record
     form_class = RecordForm
-    success_url = reverse_lazy('medical:home')
+    success_url = reverse_lazy('users:record_list')
     login_url = "users:login"
     redirect_field_name = "redirect_to"
 

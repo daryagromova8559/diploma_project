@@ -4,7 +4,6 @@ from django.db import models
 from medical.models import Doctor, Service
 
 
-
 class User(AbstractUser):
     username = None
 
@@ -54,4 +53,3 @@ class Record(models.Model):
             ('can_view_record', 'Может просматривать запись'),
             ('can_delete_record', 'Может удалять запись'),
         ]
-
